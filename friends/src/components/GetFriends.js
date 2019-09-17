@@ -1,38 +1,47 @@
 import React, { useState, useEffect }  from 'react';
-
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import { FriendCard } from './FriendCard';
+import { AddFriend } from './AddFriend';
+// import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 
 
 const GetFriends = () => {
-    const [friend, setFriend] = useState();
+    // const [friend, setFriend] = useState();
+    // console.log("friend: ", friend);
     
-    useEffect(() => {
-       getData();
-    }, [friend]);
+    // useEffect(() => {        
+    //     axiosWithAuth()
+    //     .get("/friends")
+    //     .then(res => setFriend(res.data))
+    //     .catch(err => console.log("Axios Err: ", err))
+    // }, []);
+    
+
+    // const formatData = () => {
+    //     console.log("Friend Data: ", friendData)
+
+    //     friend.forEach((name, age, email) => {
+    //         console.log("Name: ", name, "Age: ", age, "email: ", email)
+    //         friendData.push({
+    //             name: name,
+    //             age: age,
+    //             email: email
+    //         })
+    //     });
+
+    //     return friendData;
+    // };
 
 
-    const getData = () => {
-        axiosWithAuth()
-        .get("/friends")
-        .then(res => console.log("GetData: ", res))
-        .catch(err => console.log("Axios Err: ", err))
-    };
 
     return(
     <>
         <div className="friends">
                 <h2> Friends</h2>
-            
-        <div className="friend-wrapper">
-            <h2>Friend Name</h2>
-            <div className="friend-info">
-                <p>Age:</p>
-                <p>email:</p>
-            </div>
+                <AddFriend />
+                <FriendCard />
         </div>
 
-        </div>
     </>
     )
 };
