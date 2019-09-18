@@ -1,11 +1,12 @@
 import React, { useState, useEffect }  from 'react';
+import {withRouter} from 'react-router-dom';
 import { FriendCard } from './FriendCard';
 import { AddFriend } from './AddFriend';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 
 
-const GetFriends = () => {
+export const GetFriends = () => {
     const [friend, setFriend] = useState([]);
     console.log("friend: ", friend);
     
@@ -33,7 +34,7 @@ const GetFriends = () => {
     <>
         <div className="friends">
                 <h2> Friends</h2>
-                <AddFriend />
+                <AddFriend  setFriend={setFriend}/>
 
                 <div className="friend-list">
                 { friend.map(data => (<FriendCard id={data.id} setFriend={setFriend} name={data.name} age={data.age} email={data.email} />))}
@@ -44,4 +45,5 @@ const GetFriends = () => {
     )
 };
 
-export default GetFriends;
+const getFriendWithRouter = withRouter(GetFriends)
+export default getFriendWithRouter;
