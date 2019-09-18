@@ -1,5 +1,4 @@
 import React, { useState, useEffect }  from 'react';
-import { withRouter } from 'react-router';
 import { FriendCard } from './FriendCard';
 import { AddFriend } from './AddFriend';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
@@ -16,6 +15,17 @@ const GetFriends = () => {
         .then(res => setFriend(res.data))
         .catch(err => console.log("Axios Err: ", err));
     }, []);
+
+    // const deleteFriend = () => {
+    //     axiosWithAuth()
+    //     .delete(`/friends/${id}`)
+    //     .then(res => {
+    //         setFriend(res.data)
+    //     })
+    //     .catch( err => {
+    //         alert("Unable To Delete");
+    //     })
+    // }
     
 
 
@@ -26,7 +36,7 @@ const GetFriends = () => {
                 <AddFriend />
 
                 <div className="friend-list">
-                { friend.map(data => (<FriendCard  name={data.name} age={data.age} email={data.email} />))}
+                { friend.map(data => (<FriendCard id={data.id} setFriend={setFriend} name={data.name} age={data.age} email={data.email} />))}
                 </div>
         </div>
 
@@ -34,4 +44,4 @@ const GetFriends = () => {
     )
 };
 
-export default withRouter(GetFriends);
+export default GetFriends;

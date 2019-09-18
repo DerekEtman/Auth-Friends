@@ -4,9 +4,20 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 export const FriendCard = (props) => {
-    const {name, age, email} = props;
+    const {id, name, age, email, setFriend} = props;
 
     console.log("Friend Card: ", props);
+
+    const deleteFriend = () => {
+        axiosWithAuth()
+        .delete(`/friends/${id}`)
+        .then(res => {
+            setFriend(res.data)
+        })
+        .catch( err => {
+            alert("Unable To Delete");
+        })
+    }
 
     return (
     <>
@@ -17,7 +28,7 @@ export const FriendCard = (props) => {
                     <p>Age: {age}</p>
                     <p>email: {email}</p>
                 </div>
-                <button>Ex-Friend</button>
+                <button onClick={deleteFriend}>Ex-Friend</button>
             </div>
         </div>
     </>
