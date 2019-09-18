@@ -1,9 +1,12 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, Route, location } from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import Login from './LogIn';
 
 
 
-export const AddFriend = () => {
+export const AddFriend = (props) => {
+    console.log("Props addfriend: ", props)
+    const { router } = props;
     const [name, setName] = useState();
     const [age, setAge] = useState();
     const [email, setEmail] = useState();
@@ -29,7 +32,8 @@ export const AddFriend = () => {
             email
         })
         .then(res=> console.log("res: ", res))
-        .catch(err => console.log("Axios Post err: ", err))
+        .catch(err => console.log("Axios Post err: ", err));
+        router.push('/');
 
     }
 
